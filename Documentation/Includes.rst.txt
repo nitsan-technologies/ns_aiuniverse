@@ -1,0 +1,17 @@
+.. |extension_key| replace:: ns_aiuniverse
+.. |extension_name| replace:: AI Universe
+.. |vendor| replace:: NITSAN
+
+.. role:: php(code)
+   :language: php
+
+.. role:: yaml(code)
+   :language: yaml
+
+.. role:: json(code)
+   :language: json
+
+.. role:: bash(code)
+   :language: bash
+
+.. default-role:: code

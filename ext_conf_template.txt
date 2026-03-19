@@ -1,0 +1,197 @@
+# cat=AI Engine//10; type=options[openai,gemini,azure,claude,customllm, deepseek, xai, mistral]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model.default;
+defaultModel = openai
+
+# cat=AI Engine//20; type=options[gpt-4.1,gpt-4o,gpt-4,gpt-3.5-turbo,gpt-5, openai-oss]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultOpenAIModel
+defaultOpenAIModel = gpt-4o
+
+# cat=AI Engine//15; type=options[openai, mistral, gemini, customllm]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultEmbeddingsModel;
+defaultEmbeddingsModel = openai
+
+# cat=ChatGPT//21; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.openai_oss_api_url
+openai_oss_api_url = https://api.cerebras.ai/
+
+# cat=ChatGPT//22; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.openai_oss_api_key
+openai_oss_api_key =
+
+# cat=ChatGPT//23; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.openai_oss_api_model
+openai_oss_api_model =
+
+# cat=AI Engine//30; type=options[gemini-1.5-pro, gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite, gemini-2.0-pro-exp]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultGeminiModel
+defaultGeminiModel = gemini-1.5-flash
+
+# cat=AI Engine//40; type=options[claude-opus-4-6,claude-sonnet-4-6,claude-haiku-4-5]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultClaudeModel
+defaultClaudeModel = claude-haiku-4-5
+
+# cat=AI Engine//50; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultCustomllmModel
+defaultCustomllmModel =
+
+# cat=AI Engine//60; type=options[deepseek-chat, deepseek-reasoner]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultDeepseekModel
+defaultDeepseekModel = deepseek-chat
+
+# cat=AI Engine//70; type=options[grok-2-latest, grok-2-vision-latest]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultXaiModel
+defaultXaiModel = grok-2-latest
+
+# cat=AI Engine//80; type=options[mistral-large-latest, mistral-small-latest, magistral-small-latest, magistral-medium-latest]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultMistralModel
+defaultMistralModel = mistral-large-latest
+
+# cat=ChatGPT//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.apiKey
+openai_api_key =
+
+# cat=ChatGPT//12; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.adminApiKey
+openai_admin_api_key =
+
+# cat=ChatGPT//15; type=options[gpt-4.1,gpt-4o,gpt-4,gpt-3.5-turbo,gpt-5, openai-oss]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model
+openai_model = gpt-4o
+
+# cat=ChatGPT//16; type=options[text-embedding-3-small, text-embedding-3-large, text-embedding-ada-002]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:text.embedding.model
+openai_embedding_model = text-embedding-3-small
+
+# cat=ChatGPT//17; type=options[dall-e-3,gpt-image-1]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.image_model
+openai_image_model = dall-e-3
+
+# cat=ChatGPT//20; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.temprature
+openai_temperature = 0.7
+
+# cat=ChatGPT//21; type=int+; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.max_tokens
+openai_max_tokens = 1024
+
+# cat=Claude//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.anthropic.api_key
+anthropic_api_key =
+
+# cat=Claude//15; type=options[claude-opus-4-6,claude-sonnet-4-6,claude-haiku-4-5]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.anthropic.model
+anthropic_model = claude-haiku-4-5
+
+# cat=Claude//20; type=options[openai, cohere, voyage]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.anthropic.embedding_provider
+anthropic_embedding_provider = openai
+
+# cat=Claude//25; type=options[text-embedding-3-small, text-embedding-3-large, embed-english-v3.0, voyage-large-2]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.anthropic.embedding_model
+anthropic_embedding_model = text-embedding-3-small
+
+# cat=Claude//30; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.anthropic.temperature
+anthropic_temperature = 0.7
+
+# cat=Claude//35; type=int+; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.max_tokens
+anthropic_max_tokens = 1024
+
+# cat=deepl//01; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepl_api_key
+deepl_api_key =
+
+# cat=deepl//02; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deeplKey
+deepl_api_url = https://api-free.deepl.com/v2
+
+# cat=google/01; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.google_api_key
+google_api_key =
+
+# cat=google/02; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.googleUrl
+google_api_url = https://translation.googleapis.com/language/translate/v2
+
+# cat=gemini//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.gemini_api_key
+gemini_api_key =
+
+# cat=gemini//20; type=options[gemini-1.5-pro, gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite, gemini-2.0-pro-exp]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.gemini_api_model
+gemini_model = gemini-1.5-flash
+
+# cat=gemini//16; type=options[text-embedding-004]; label=LLL:EXT:ns_t3ac/Resources/Private/Language/locallang_be.xlf:text.embedding.model
+gemini_embedding_model = text-embedding-004
+
+# cat=azure//01; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.azure_api_key
+azure_api_key =
+
+# cat=azure//02;  type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.azure_api_endpoint
+azure_api_endpoint =
+
+# cat=azure//03;  type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.azure_api_model
+azure_api_model = Default
+
+# cat=azure//04;  type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.azure_api_version
+azure_api_version = 2024-02-01
+
+# cat=custom llm//01; type=boolean; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.customllm_enable
+enable_custom_llm_model = 1
+
+# cat=custom llm//02; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.customllm_endpoint
+custom_llm_api_url =
+
+# cat=custom llm//03; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.custom_llm_api_key
+custom_llm_api_key =
+
+# cat=custom llm//04; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.customllm_api_url_model_connect
+customllm_api_url_model_connect =
+
+# cat=custom llm//05; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.customllm_model_name
+custom_llm_model_name =
+
+# cat=custom llm//06; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.anthropic.temperature
+custom_llm_temperature = 0.7
+
+# cat=custom llm//07; type=int[1-5]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.customllm_max_depth
+customllm_max_depth = 1
+
+# cat=DeepSeek//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:deepseek.apiKey
+deepseek_api_key =
+
+# cat=DeepSeek//15; type=options[deepseek-chat, deepseek-reasoner]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:deepseek.model
+deepseek_model = deepseek-chat
+
+# cat=DeepSeek//20; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepseek_temperature
+deepseek_temperature = 0.7
+
+# cat=DeepSeek//35; type=options[text, json_object]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.response_format
+deepseek_response_format = text
+
+# cat=DeepSeek//60; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepseek_stop
+deepseek_stop = null
+
+# cat=DeepSeek//65; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepseek_stream
+deepseek_stream = 0
+
+# cat=DeepSeek//70; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepseek_stream_options
+deepseek_stream_options = null
+
+# cat=DeepSeek//75; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepseek_tools
+deepseek_tools = null
+
+# cat=DeepSeek//80; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepseek_tool_choice
+deepseek_tool_choice = none
+
+# cat=DeepSeek//85; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.deepseek_logprobs
+deepseek_logprobs = 0
+
+# cat=XAi//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:xai.apiKey
+xai_api_key =
+
+# cat=XAi//15; type=options[grok-2-latest, grok-2-vision-latest]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:xai.model
+xai_model = grok-2-latest
+
+# cat=XAi//20; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.xai_temperature
+xai_temperature = 0.7
+
+# cat=XAi//30; type=options[text, json_object]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.xai_response_format
+xai_response_format = text
+
+# cat=Mistral//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.mistral_api_key
+mistral_api_key =
+
+# cat=Mistral//15; type=options[mistral-large-latest, mistral-small-latest, magistral-small-latest, magistral-medium-latest]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.mistral_model
+mistral_model = mistral-large-latest
+
+# cat=Mistral//20; type=options[mistral-embed]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:text.embedding.model
+mistral_embedding_model = mistral-embed
+
+# cat=Mistral//25; type=double; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.mistral_temperature
+mistral_temperature = 0.7
+
+# cat=Mistral//30; type=int+; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.max_tokens
+mistral_max_tokens = 1024
+
+# cat=translation//10; type=options[openai=nst3ai,deepl=deepl,gemini=geminiai,google=google,claude=claudeai]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model.defaultModelForTranslation;
+defaultModelForTranslation = openai
+
+#cat=Basic Authentication//01; type=boolean; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extConfiguration.basicAuthEnabled
+basicAuthEnabled =
+
+#cat=Basic Authentication//02; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extConfiguration.basicAuthUsername
+basicAuthUsername =
+
+#cat=Basic Authentication//03; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extConfiguration.basicAuthPassword
+basicAuthPassword =

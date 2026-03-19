@@ -1,0 +1,25 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  NITSAN\NsAiUniverse\:
+    resource: '../Classes/*'
+
+  NITSAN\NsAiUniverse\Client\BaseClient:
+    arguments:
+      $nonLegacyModel: true
+      $extConf: []
+
+  NITSAN\NsAiUniverse\Service\AiRequestService:
+    arguments:
+      $extensionKey: 'ns_aiuniverse'
+
+  NITSAN\NsAiUniverse\Utility\HttpAuthUtility:
+    arguments:
+      $extensionKey: 'ns_aiuniverse'
+
+  NITSAN\NsAiUniverse\Configuration\AiEngineConfiguration:
+    arguments:
+      $extensionKey: 'ns_aiuniverse'

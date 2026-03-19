@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf" date="2025-01-20T00:00:00Z" product-name="ns_aiuniverse">
+		<header/>
+		<body>
+			<!-- AI Engine Default Models -->
+			<trans-unit id="extmng.model.default" resname="extmng.model.default">
+				<source>Default AI Model Provider: Choose which AI provider is used by default across the extension.</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultOpenAIModel" resname="extmng.defaultOpenAIModel">
+				<source>Default OpenAI Model: Select which OpenAI model is used by default.</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultEmbeddingsModel" resname="extmng.defaultEmbeddingsModel">
+				<source>Default Embedding Model: Select the provider and model used for generating embeddings.</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultGeminiModel" resname="extmng.defaultGeminiModel">
+				<source>Default Gemini Model: Select which Gemini model is used by default.</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultClaudeModel" resname="extmng.defaultClaudeModel">
+				<source>Default Claude Model: Select which Claude model is used by default.</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultCustomllmModel" resname="extmng.defaultCustomllmModel">
+				<source>Default Custom AI Model</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultDeepseekModel" resname="extmng.defaultDeepseekModel">
+				<source>Default DeepSeek Model: Select which DeepSeek model is used by default.</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultXaiModel" resname="extmng.defaultXaiModel">
+				<source>Default xAI Model</source>
+			</trans-unit>
+			<trans-unit id="extmng.defaultMistralModel" resname="extmng.defaultMistralModel">
+				<source>Default Mistral Model: Select the Mistral model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.model.defaultModelForTranslation" resname="extmng.model.defaultModelForTranslation">
+				<source>Default Translation Model: Select the AI model to use for Auto-Translate, Re-Translate, and Mass-Translate operations.</source>
+			</trans-unit>
+
+			<!-- OpenAI / ChatGPT Configuration -->
+			<trans-unit id="extmng.apiKey" resname="extmng.apiKey">
+				<source>OpenAI API Key: Enter your OpenAI API key. Used for ChatGPT and related models.</source>
+			</trans-unit>
+			<trans-unit id="extmng.adminApiKey" resname="extmng.adminApiKey">
+				<source>OpenAI Admin API Key: Enter your OpenAI admin API key. Required for viewing usage statistics.</source>
+			</trans-unit>
+			<trans-unit id="extmng.model" resname="extmng.model">
+				<source>Default ChatGPT Model: Select the default ChatGPT model. You can still switch models when using individual AI features.</source>
+			</trans-unit>
+			<trans-unit id="extmng.image_model" resname="extmng.image_model">
+				<source>OpenAI Image Model: Select the OpenAI image model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.image_model.dall-e-3" resname="extmng.image_model.dall-e-3">
+				<source>DALL-E 3</source>
+			</trans-unit>
+			<trans-unit id="extmng.image_model.gpt-image-1" resname="extmng.image_model.gpt-image-1">
+				<source>GPT Image 1</source>
+			</trans-unit>
+			<trans-unit id="extmng.temprature" resname="extmng.temprature">
+				<source>Temperature: Controls response randomness (0–2). Lower values give focused answers; higher values give more creative outputs.</source>
+			</trans-unit>
+			<trans-unit id="extmng.max_tokens" resname="extmng.max_tokens">
+				<source>Max Tokens</source>
+			</trans-unit>
+			<trans-unit id="extmng.max_tokens.description" resname="extmng.max_tokens.description">
+				<source>Set the maximum length of the AI's response. Higher values allow longer replies but may increase cost and processing time.</source>
+			</trans-unit>
+			<trans-unit id="extmng.openai_oss_api_url" resname="extmng.openai_oss_api_url">
+				<source>OpenAI-Compatible API URL: Enter the endpoint URL for your self-hosted or open-source OpenAI-compatible model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.openai_oss_api_key" resname="extmng.openai_oss_api_key">
+				<source>OpenAI-Compatible API Key: Enter the API key for your self-hosted or open-source model endpoint.</source>
+			</trans-unit>
+			<trans-unit id="extmng.openai_oss_api_model" resname="extmng.openai_oss_api_model">
+				<source>OpenAI-Compatible Model Name: Enter the model name as defined in your self-hosted model endpoint.</source>
+			</trans-unit>
+			<trans-unit id="text.embedding.model" resname="text.embedding.model">
+                <source>Text Embedding Model</source>
+            </trans-unit>
+
+			<!-- Gemini Configuration -->
+			<trans-unit id="extmng.gemini_api_key" resname="extmng.gemini_api_key">
+				<source>Gemini API Key: Enter your Gemini API key.</source>
+			</trans-unit>
+			<trans-unit id="extmng.gemini_api_model" resname="extmng.gemini_api_model">
+				<source>Gemini API Model: Select the Gemini API model.</source>
+			</trans-unit>
+
+			<!-- Claude Configuration (Anthropic / ns_aiuniverse tab) -->
+			<trans-unit id="extmng.anthropic_api_key" resname="extmng.anthropic_api_key">
+				<source>Anthropic API Key: Enter your API key from console.anthropic.com.</source>
+			</trans-unit>
+			<trans-unit id="extmng.claude_api_model" resname="extmng.claude_api_model">
+				<source>Claude API Model: Select the Claude API model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.anthropic.api_key" resname="extmng.anthropic.api_key">
+				<source>Anthropic API Key: Enter your API key from console.anthropic.com.</source>
+			</trans-unit>
+			<trans-unit id="extmng.anthropic.model" resname="extmng.anthropic.model">
+				<source>Claude Model: Select the Claude model you want to use as the default chat model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.anthropic.embedding_provider" resname="extmng.anthropic.embedding_provider">
+				<source>Embedding Provider: Select the provider to use for embeddings (Claude does not provide native embeddings).</source>
+			</trans-unit>
+			<trans-unit id="extmng.anthropic.embedding_model" resname="extmng.anthropic.embedding_model">
+				<source>Embedding Model: Select the embedding model for your chosen provider. Options depend on the provider selected above.</source>
+			</trans-unit>
+			<trans-unit id="extmng.anthropic.temperature" resname="extmng.anthropic.temperature">
+				<source>Temperature: Controls response randomness (0–1). Lower values give more precise answers; higher values give more varied outputs.</source>
+			</trans-unit>
+
+			<!-- Azure Configuration -->
+			<trans-unit id="extmng.azure_api_key" resname="extmng.azure_api_key">
+				<source>Azure API Key: Enter your Azure API key.</source>
+			</trans-unit>
+			<trans-unit id="extmng.azure_api_endpoint" resname="extmng.azure_api_endpoint">
+				<source>API Endpoint: Enter your Azure API endpoint.</source>
+			</trans-unit>
+			<trans-unit id="extmng.azure_api_model" resname="extmng.azure_api_model">
+				<source>Azure Deployment Name: Enter the deployment name you configured for your GPT model in Azure OpenAI Studio.</source>
+			</trans-unit>
+			<trans-unit id="extmng.azure_api_version" resname="extmng.azure_api_version">
+				<source>API version: Enter your API version.</source>
+			</trans-unit>
+
+			<!-- Custom LLM Configuration -->
+			<trans-unit id="extmng.customllm_enable" resname="extmng.customllm_enable">
+				<source>Enable Custom AI Model: Activate a custom AI engine endpoint instead of a standard provider.</source>
+			</trans-unit>
+			<trans-unit id="extmng.customllm_endpoint" resname="extmng.customllm_endpoint">
+				<source>Custom AI Model API URL: Enter the base URL of your custom AI model API.</source>
+			</trans-unit>
+			<trans-unit id="extmng.custom_llm_api_key" resname="extmng.custom_llm_api_key">
+				<source>Custom LLM API Key Backend: Enter your custom LLM API key for backend.</source>
+			</trans-unit>
+			<trans-unit id="extmng.customllm_api_url_model_connect" resname="extmng.customllm_api_url_model_connect">
+				<source>Model List Endpoint URL: Enter the URL used to fetch available models from your custom AI endpoint.</source>
+			</trans-unit>
+			<trans-unit id="extmng.customllm_model_name" resname="extmng.customllm_model_name">
+				<source>Custom LLM Model Name: Enter the name of the custom LLM model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.customllm_max_depth" resname="extmng.customllm_max_depth">
+				<source>Maximum Crawl Depth: Limit how many levels deep the custom AI engine will process content.</source>
+			</trans-unit>
+
+			<!-- DeepSeek Configuration -->
+			<trans-unit id="deepseek.apiKey" resname="deepseek.apiKey">
+				<source>DeepSeek API Key: Enter your DeepSeek API key.</source>
+			</trans-unit>
+			<trans-unit id="deepseek.model" resname="deepseek.model">
+				<source>DeepSeek Model: Select the DeepSeek model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deepseek_temperature" resname="extmng.deepseek_temperature">
+				<source>DeepSeek Temperature: Select temperature for DeepSeek model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.response_format" resname="extmng.response_format">
+				<source>Response Format: Select the response format.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deepseek_stop" resname="extmng.deepseek_stop">
+				<source>DeepSeek Stop: Enter the stop sequence.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deepseek_stream" resname="extmng.deepseek_stream">
+				<source>DeepSeek Stream: Check to enable stream.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deepseek_stream_options" resname="extmng.deepseek_stream_options">
+				<source>DeepSeek Stream Options: Additional options for streamed responses. Only configure this if streaming is enabled.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deepseek_tools" resname="extmng.deepseek_tools">
+				<source>DeepSeek Tools: Enter tools.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deepseek_tool_choice" resname="extmng.deepseek_tool_choice">
+				<source>DeepSeek Tool Choice: Enter tool choice.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deepseek_logprobs" resname="extmng.deepseek_logprobs">
+				<source>DeepSeek Logprobs: Check to enable logprobs.</source>
+			</trans-unit>
+
+			<!-- xAI Configuration -->
+			<trans-unit id="xai.apiKey" resname="xai.apiKey">
+				<source>xAI API Key: Enter your xAI API key.</source>
+			</trans-unit>
+			<trans-unit id="xai.model" resname="xai.model">
+				<source>xAI Model: Select the xAI model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.xai_temperature" resname="extmng.xai_temperature">
+				<source>xAI Temperature: Select temperature for xAI model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.xai_response_format" resname="extmng.xai_response_format">
+				<source>xAI Response Format: Select the response format for xAI.</source>
+			</trans-unit>
+
+			<!-- Mistral Configuration -->
+			<trans-unit id="extmng.mistral_api_key" resname="extmng.mistral_api_key">
+				<source>Mistral API Key: Enter your Mistral API key.</source>
+			</trans-unit>
+			<trans-unit id="extmng.mistral_model" resname="extmng.mistral_model">
+				<source>Mistral Model: Select the Mistral model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.mistral_temperature" resname="extmng.mistral_temperature">
+				<source>Mistral Temperature: Select temperature for Mistral model.</source>
+			</trans-unit>
+			<trans-unit id="extmng.mistral_max_tokens" resname="extmng.mistral_max_tokens">
+				<source>Max Tokens: Set the maximum number of tokens the model can generate in a response.</source>
+			</trans-unit>
+
+			<!-- DeepL Configuration -->
+			<trans-unit id="extmng.deepl_api_key" resname="extmng.deepl_api_key">
+				<source>DeepL API Key: Enter your DeepL API key.</source>
+			</trans-unit>
+			<trans-unit id="extmng.deeplKey" resname="extmng.deeplKey">
+				<source>DeepL API URL: Enter your DeepL API URL.</source>
+			</trans-unit>
+
+			<!-- Google Translate Configuration -->
+			<trans-unit id="extmng.google_api_key" resname="extmng.google_api_key">
+				<source>Google Translate API Key: Enter your Google API key.</source>
+			</trans-unit>
+			<trans-unit id="extmng.googleUrl" resname="extmng.googleUrl">
+				<source>Google Translate API URL: Enter your Google Translate API URL.</source>
+			</trans-unit>
+
+			<!-- Basic Authentication Configuration -->
+			<trans-unit id="extConfiguration.basicAuthEnabled" resname="extConfiguration.basicAuthEnabled">
+				<source>Enable Basic Authentication Support: If your website is protected by HTTP Basic Authentication, enable this so the extension can still access it.</source>
+			</trans-unit>
+			<trans-unit id="extConfiguration.basicAuthUsername" resname="extConfiguration.basicAuthUsername">
+				<source>Basic Auth Username: Enter username for basic authentication.</source>
+			</trans-unit>
+			<trans-unit id="extConfiguration.basicAuthPassword" resname="extConfiguration.basicAuthPassword">
+				<source>Basic Auth Password: Enter password for basic authentication.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

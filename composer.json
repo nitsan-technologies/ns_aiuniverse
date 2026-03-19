@@ -1,0 +1,64 @@
+{
+    "name": "nitsan/ns-aiuniverse",
+    "type": "typo3-cms-extension",
+    "description": "Base extension providing AI model configuration, HTTP authentication, logging, and AI request/response processing. This extension serves as the foundation for AI-powered TYPO3 extensions.",
+    "homepage": "https://t3planet.com",
+    "authors": [
+        {
+            "name": "Team T3Planet",
+            "role": "Developer",
+            "homepage": "https://t3planet.com",
+            "email": "support@t3planet.com"
+        }
+    ],
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "TYPO3",
+        "AI",
+        "OpenAI",
+        "Gemini",
+        "Claude",
+        "Azure",
+        "DeepSeek",
+        "xAI",
+        "Mistral",
+        "Base Extension"
+    ],
+    "support": {
+        "issues": "https://t3planet.com/support"
+    },
+    "require": {
+        "typo3/cms-core": "^11 || ^12 || ^13",
+        "php": "^7.4 || ^8"
+    },
+    "autoload": {
+        "psr-4": {
+            "NITSAN\\NsAiUniverse\\": "Classes"
+        }
+    },
+    "replace": {
+        "typo3-ter/ns-aiuniverse": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin",
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "web-dir": ".Build/public",
+            "extension-key": "ns_aiuniverse"
+        }
+    },
+    "scripts": {
+        "doc-watch": "docker run --rm -it --pull always -v \"$(pwd)/Documentation:/project/Documentation\" -v \"$(pwd)/Documentation-GENERATED-temp:/project/Documentation-GENERATED-temp\" -p 1337:1337 ghcr.io/typo3-documentation/render-guides:latest --config=Documentation --watch"
+    },
+    "scripts-descriptions": {
+        "doc-watch": "Render documentation with watcher"
+    }
+}

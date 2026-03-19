@@ -1,0 +1,86 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NITSAN\NsAiUniverse\Service;
+
+use Psr\Log\LoggerInterface;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use NITSAN\NsAiUniverse\Domain\Repository\LogRepository;
+use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
+use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+
+
+class AiLogService
+{
+    private array $extConf;
+    private PersistenceManager $persistenceManager;
+    private Context $context;
+    protected $backendUserRepository = null;
+    protected LoggerInterface $logger;
+    private string $extensionKey;
+
+    /**
+     * @param string $extensionKey Extension key to read configuration from
+     */
+    public function __construct(string $extensionKey = 'ns_aiuniverse')
+    {
+        $this->extensionKey = $extensionKey;
+        $this->extConf = AiUniverseUtilityHelper::getExtensionConf($this->extensionKey);
+        $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
+        $this->context = GeneralUtility::makeInstance(Context::class);
+        $this->backendUserRepository = GeneralUtility::makeInstance(BackendUserRepository::class);
+        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+    }
+
+    public function writeLog(string $logMessage, string $logLevel, string $module = 'ns_aiuniverse'): void
+    {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('sys_log');
+
+        if ($connection->isConnected()) {
+            $userId = 0;
+            $workspace = 0;
+            $data = [];
+            $backendUser = $this->getBackendUser();
+
+            if ($backendUser instanceof BackendUserAuthentication) {
+                if (isset($backendUser->user['uid'])) {
+                    $userId = (int)$backendUser->user['uid'];
+                }
+                $workspace = (int)$backendUser->workspace;
+                if ($backUserId = $backendUser->getOriginalUserIdWhenInSwitchUserMode()) {
+                    $data['originalUser'] = $backUserId;
+                }
+            }
+
+            $connection->insert(
+                'sys_log',
+                [
+                    'userid' => $userId,
+                    'type' => 1, // Custom error type, adjust as needed
+                    'channel' => $module,
+                    'action' => 0,
+                    'error' => 1,
+                    'level' => $logLevel,
+                    'details_nr' => 0,
+                    'details' => str_replace('%', '%%', $logMessage),
+                    'log_data' => empty($data) ? '' : json_encode($data),
+                    'IP' => GeneralUtility::getIndpEnv('REMOTE_ADDR') ?: '',
+                    'tstamp' => time(),
+                    'workspace' => $workspace,
+                ]
+            );
+        }
+    }
+
+    protected function getBackendUser(): ?BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'] ?? null;
+    }
+}

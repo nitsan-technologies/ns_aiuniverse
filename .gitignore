@@ -1,0 +1,10 @@
+/.Build
+.cache
+/composer.lock
+/Documentation-GENERATED-temp
+/out.txt
+/Tests/Build/.phpunit.result.cache
+.DS_Store
+.idea/
+.fleet/
+/var/

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides
+    xmlns="https://www.phpdoc.org/guides"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+    theme="typo3docs"
+>
+    <project
+        title="AI Universe"
+        version="1.0.0"
+        release="1.0.0"
+        copyright="by nitsan"
+    />
+
+    <extension
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+        project-home="https://github.com/nitsan-technologies/ns_aiuniverse"
+        project-contact="https://www.nitsan.in/contact-us/"
+        project-repository="https://github.com/nitsan-technologies/ns_aiuniverse"
+        edit-on-github="nitsan-technologies/ns_aiuniverse"
+        edit-on-github-branch="master"
+        interlink-shortcode="nitsan/ns-aiuniverse"
+    />
+
+    <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/" />
+    <inventory id="t3tca" url="https://docs.typo3.org/m/typo3/reference-tca/main/en-us/" />
+    <inventory id="t3tsconfig" url="https://docs.typo3.org/m/typo3/reference-tsconfig/main/en-us/" />
+</guides>
