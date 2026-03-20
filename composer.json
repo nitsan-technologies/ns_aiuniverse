@@ -1,14 +1,14 @@
 {
     "name": "nitsan/ns-aiuniverse",
     "type": "typo3-cms-extension",
-    "description": "Base extension providing AI model configuration, HTTP authentication, logging, and AI request/response processing. This extension serves as the foundation for AI-powered TYPO3 extensions.",
-    "homepage": "https://t3planet.com",
+    "description": "AI Universe is the shared AI foundation layer for TYPO3 extensions. It centralizes AI provider communication, model selection, request handling, statistics preparation, and utility functions so other extensions can build AI features faster and with consistent behavior.",
+    "homepage": "https://t3planet.de",
     "authors": [
         {
             "name": "Team T3Planet",
             "role": "Developer",
-            "homepage": "https://t3planet.com",
-            "email": "support@t3planet.com"
+            "homepage": "https://t3planet.de",
+            "email": "support@t3planet.de"
         }
     ],
     "license": "GPL-2.0-or-later",
@@ -25,7 +25,7 @@
         "Base Extension"
     ],
     "support": {
-        "issues": "https://t3planet.com/support"
+        "issues": "https://t3planet.de/support"
     },
     "require": {
         "typo3/cms-core": "^11 || ^12 || ^13",

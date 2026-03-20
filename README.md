@@ -29,11 +29,11 @@ It includes these features:
 | | URL |
 |------------------|---------------------------------------------------------------|
 | **Repository:** | https://github.com/nitsan-technologies/ns_aiuniverse |
-| **Issues:** | https://t3planet.com/support |
+| **Issues:** | https://t3planet.de/support |
 | **Composer:** | https://packagist.org/packages/nitsan/ns-aiuniverse |
 | **TER:** | https://extensions.typo3.org/extension/ns_aiuniverse/ |
 | **Documentation:** | https://docs.typo3.org/p/nitsan/ns-aiuniverse/main/en-us/ |
-| **Support:** | https://t3planet.com/support |
+| **Support:** | https://t3planet.de/support |
 
 ## Compatibility
 

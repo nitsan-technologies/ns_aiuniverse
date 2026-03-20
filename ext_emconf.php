@@ -1,13 +1,13 @@
 <?php
 
 $EM_CONF['ns_aiuniverse'] = [
-    'title' => 'AI Universe - Base AI Extension',
-    'description' => 'Base extension providing AI model configuration, HTTP authentication, and AI request/response processing. This extension serves as the foundation for AI-powered TYPO3 extensions.',
+    'title' => 'AI Universe',
+    'description' => 'AI Universe is the shared AI foundation layer for TYPO3 extensions. It centralizes AI provider communication, model selection, request handling, statistics preparation, and utility functions so other extensions can build AI features faster and with consistent behavior.',
     'category' => 'be',
     'author' => 'Team T3Planet',
-    'author_email' => 'support@t3planet.com',
+    'author_email' => 'support@t3planet.de',
     'author_company' => 'T3Planet // NITSAN',
-    'state' => 'beta',
+    'state' => 'stable',
     'clearCacheOnLoad' => 0,
     'version' => '1.0.0',
     'constraints' => [

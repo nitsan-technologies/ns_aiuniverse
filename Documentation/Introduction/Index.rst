@@ -6,7 +6,7 @@
 Introduction
 ============
 
-AI Universe is a **base extension** for AI operations in TYPO3.
+AI Universe is a base extension for AI operations in T3Planet's AI Extension.
 It is designed as shared infrastructure, not as a standalone frontend plugin.
 
 .. contents::
@@ -20,7 +20,7 @@ What it is
 
 - A reusable service layer for AI provider communication.
 - A central configuration point for API keys and model defaults.
-- A utility and statistics layer for AI-enabled TYPO3 extensions.
+- A utility and statistics layer for AI-enabled T3Plane's AI Extensions for TYPO3.
 
 .. _introduction-what-it-is-not:
 

@@ -7,29 +7,32 @@ AI Universe
 ==============
 
 :Extension key:
-   |extension_key|
+   ns_aiuniverse
 
 :Package name:
-   :composer:`nitsan/ns-aiuniverse`
+   nitsan/ns-aiuniverse
 
 :Language:
    en
 
 :Author:
-   NITSAN
+   Team T3Planet
+
+:Company:
+   T3Planet
 
 :License:
    GPL-2.0-or-later
 
 ----
 
-AI Universe is the shared AI foundation layer used by TYPO3 extensions.
-It centralizes provider configuration, request orchestration, and usage
-statistics processing.
+AI Universe is the shared AI foundation layer for
+`T3Planet's AI Extensions for TYPO3 <https://t3planet.de/typo3-ki>`_.
+It centralizes AI provider communication, model selection, request handling, statistics preparation, and utility functions so other extensions can build AI features faster and with consistent behavior.
 
 This documentation is written for:
 
-- **Developers** integrating AI features into their TYPO3 extensions.
+- **Developers** integrating T3Planet's AI Extensions into their TYPO3 CMS.
 - **Editors and administrators** configuring providers and operations.
 - **Non-technical stakeholders** who need a clear product overview.
 
