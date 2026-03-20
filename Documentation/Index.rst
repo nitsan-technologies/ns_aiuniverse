@@ -26,8 +26,8 @@ AI Universe
 
 ----
 
-AI Universe is the shared AI foundation layer for
-`T3Planet's AI Extensions for TYPO3 <https://t3planet.de/typo3-ki>`_.
+AI Universe is the shared AI foundation layer for T3Planet's
+`AI Extensions for TYPO3 <https://t3planet.de/typo3-ki>`_.
 It centralizes AI provider communication, model selection, request handling, statistics preparation, and utility functions so other extensions can build AI features faster and with consistent behavior.
 
 This documentation is written for:
