@@ -7,10 +7,7 @@ namespace NITSAN\NsAiUniverse\Service;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use NITSAN\NsAiUniverse\Domain\Repository\LogRepository;
 use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
-use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -19,9 +16,7 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 class AiLogService
 {
     private array $extConf;
-    private PersistenceManager $persistenceManager;
     private Context $context;
-    protected $backendUserRepository = null;
     protected LoggerInterface $logger;
     private string $extensionKey;
 
@@ -32,9 +27,7 @@ class AiLogService
     {
         $this->extensionKey = $extensionKey;
         $this->extConf = AiUniverseUtilityHelper::getExtensionConf($this->extensionKey);
-        $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         $this->context = GeneralUtility::makeInstance(Context::class);
-        $this->backendUserRepository = GeneralUtility::makeInstance(BackendUserRepository::class);
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 

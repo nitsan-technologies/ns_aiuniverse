@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NITSAN\NsAiUniverse\Client;
 
 use DateTime;
@@ -83,7 +85,7 @@ class BaseClient
         return $requestData;
     }
 
-    public function getResponseData($type, $responseArray): string
+    public function getResponseData(string $type, array $responseArray): string
     {
         $generatedText = '';
         switch ($type) {
