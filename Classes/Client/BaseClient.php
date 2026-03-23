@@ -71,7 +71,7 @@ class BaseClient
                 break;
             case 'deepseek':
                 $requestData = $this->getDeepseekRequestData($data, $aiSelectedModel);
-                break;     
+                break;
             case 'customllm':
                 $requestData = $this->getCustomLlmRequestData($data, $content);
                 break;
@@ -80,7 +80,7 @@ class BaseClient
                 break;
             case 'xai':
                 $requestData = $this->getXaiRequestData($data, $aiSelectedModel);
-                break;    
+                break;
         }
         return $requestData;
     }
@@ -103,7 +103,7 @@ class BaseClient
                 break;
             case 'deepseek':
                 $generatedText = $this->getDeepseekResponseData($responseArray);
-                break;    
+                break;
             case 'customllm':
                 $generatedText = $this->getCustomLlmResponseData($responseArray);
                 break;
@@ -112,7 +112,7 @@ class BaseClient
                 break;
             case 'xai':
                 $generatedText = $this->getXaiResponseData($responseArray);
-                break;    
+                break;
         }
 
         return $generatedText;
@@ -142,7 +142,10 @@ class BaseClient
         if ($type === 'claude') {
             return $this->getClaudeStreamRequestData($messagesOrContents, $options, $aiSelectedModel);
         }
-        return [];
+        return [
+            'url' => '',
+            'body' => [],
+        ];
     }
 
     /**
@@ -182,7 +185,6 @@ class BaseClient
      */
     public function buildMessageHistory(string $engine, string $systemContent, string $userMessage): array
     {
-        $userMessage = $userMessage ?? '';
         if ($engine === 'gemini') {
             return [
                 ['role' => 'user', 'parts' => [['text' => $systemContent]]],
@@ -278,8 +280,8 @@ class BaseClient
             'presence_penalty' => (float)($options['presence_penalty'] ?? $this->extConf['openai_presence_penalty'] ?? 0),
         ];
         if (in_array($model, ['gpt-5'], true)) {
-            $data['max_completion_tokens'] = $data['max_tokens'] ?? (int)($this->extConf['openai_max_tokens'] ?? 1024);
-            unset($data['max_tokens'], $data['temperature'], $data['top_p'], $data['presence_penalty'], $data['frequency_penalty']);
+            $data['max_completion_tokens'] = $data['max_tokens'];
+            unset($data['max_tokens'], $data['temperature'], $data['presence_penalty'], $data['frequency_penalty']);
         }
         $requestData = [];
         $requestData['url'] = $this->nonLegacyModel ? self::OPENAI_API_URL . self::OPENAI_CHAT_ENDPOINT : self::OPENAI_LEGACY_API_URL;
@@ -382,9 +384,9 @@ class BaseClient
         $requestData['body'] = [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $apiKey
+                'Authorization' => 'Bearer ' . $apiKey,
             ],
-            'json' => $data
+            'json' => $data,
         ];
         return $requestData;
     }
@@ -397,7 +399,7 @@ class BaseClient
         // Base request body data
         $requestBodyData = [
             // 'model' => $model,
-            'stream' => false
+            'stream' => false,
         ];
         $content = !empty($data['messages'][0]['content'])
             ? $data['messages'][0]['content']
@@ -406,16 +408,16 @@ class BaseClient
         $requestBodyData['messages'] = [
             [
                 'role' => 'user',
-                'content' => $content
-            ]
+                'content' => $content,
+            ],
         ];
 
         $customllm = [
             'temperature',
         ];
 
-        foreach($customllm as $opion) {
-            if(isset($this->extConf['custom_llm_'.$opion]) && $this->extConf['custom_llm_'.$opion] != '') {
+        foreach ($customllm as $opion) {
+            if (isset($this->extConf['custom_llm_'.$opion]) && $this->extConf['custom_llm_'.$opion] != '') {
                 $requestBodyData[$opion] = $this->extConf['custom_llm_'.$opion];
             }
         }
@@ -423,9 +425,9 @@ class BaseClient
         $requestData['body'] = [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $this->extConf['custom_llm_api_key']
+                'Authorization' => 'Bearer ' . $this->extConf['custom_llm_api_key'],
             ],
-            'body' => json_encode($requestBodyData)
+            'body' => json_encode($requestBodyData),
         ];
         $requestData['url'] = $this->extConf['custom_llm_api_url'];
         return $requestData;
@@ -436,38 +438,38 @@ class BaseClient
         $dataContent = '';
         if (isset($data['messages'][0]['content']) && $data['messages'][0]['content'] !== '') {
             $dataContent = $data['messages'][0]['content'];
-        } elseif(isset($data['messages'][1]['content']) && $data['messages'][1]['content'] !== '') {
+        } elseif (isset($data['messages'][1]['content']) && $data['messages'][1]['content'] !== '') {
             $dataContent = $data['messages'][1]['content'];
         } else {
             $dataContent = $content;
         }
         $requestPayload = [
-            "contents" => [
-                "parts" => [
-                    ["text" => $dataContent]
-                ]
+            'contents' => [
+                'parts' => [
+                    ['text' => $dataContent],
+                ],
             ],
-            "generationConfig" => [
-                "temperature" => 0.1,
-                "maxOutputTokens" => (int)($this->extConf['gemini_max_output_tokens'] ?? 1024),
-                "stopSequences" => [],
+            'generationConfig' => [
+                'temperature' => 0.1,
+                'maxOutputTokens' => (int)($this->extConf['gemini_max_output_tokens'] ?? 1024),
+                'stopSequences' => [],
             ],
-            "safetySettings" => [
+            'safetySettings' => [
                 [
-                    "category" => "HARM_CATEGORY_HARASSMENT",
-                    "threshold" => "BLOCK_NONE",
+                    'category' => 'HARM_CATEGORY_HARASSMENT',
+                    'threshold' => 'BLOCK_NONE',
                 ],
                 [
-                    "category" => "HARM_CATEGORY_HATE_SPEECH",
-                    "threshold" => "BLOCK_NONE",
+                    'category' => 'HARM_CATEGORY_HATE_SPEECH',
+                    'threshold' => 'BLOCK_NONE',
                 ],
                 [
-                    "category" => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                    "threshold" => "BLOCK_NONE",
+                    'category' => 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+                    'threshold' => 'BLOCK_NONE',
                 ],
                 [
-                    "category" => "HARM_CATEGORY_DANGEROUS_CONTENT",
-                    "threshold" => "BLOCK_NONE",
+                    'category' => 'HARM_CATEGORY_DANGEROUS_CONTENT',
+                    'threshold' => 'BLOCK_NONE',
                 ],
             ],
         ];
@@ -476,12 +478,12 @@ class BaseClient
         $requestData['url'] = self::GEMINI_API_URL . $model . ':generateContent';
         $requestData['body'] = [
             'query' => [
-                'key' => $this->extConf['gemini_api_key']
+                'key' => $this->extConf['gemini_api_key'],
             ],
             'headers' => [
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
             ],
-            'json' => $requestPayload
+            'json' => $requestPayload,
         ];
 
         return $requestData;
@@ -493,20 +495,20 @@ class BaseClient
         $requestData['url'] = $this->extConf['azure_api_endpoint'] . 'openai/deployments/'.$model . '/chat/completions';
         $requestData['body'] = [
             'query' => [
-                'api-version' => $this->extConf['azure_api_version']
+                'api-version' => $this->extConf['azure_api_version'],
             ],
             'headers' => [
                 'Content-Type' => 'application/json',
-                'api-key' => $this->extConf['azure_api_key']
+                'api-key' => $this->extConf['azure_api_key'],
             ],
             'json' => [
                 'messages' => [
                     [
                         'role' => 'user',
-                        'content' => $data['messages'][0]['content'] ?? $content
-                    ]
-                ]
-            ]
+                        'content' => $data['messages'][0]['content'] ?? $content,
+                    ],
+                ],
+            ],
         ];
         return $requestData;
     }
@@ -523,9 +525,9 @@ class BaseClient
             'messages' => [
                 [
                     'role' => 'user',
-                    'content' => $content
-                ]
-            ]
+                    'content' => $content,
+                ],
+            ],
         ];
 
         $requestData['url'] = self::CLAUDE_API_URL;
@@ -533,9 +535,9 @@ class BaseClient
             'headers' => [
                 'x-api-key' => $this->extConf['anthropic_api_key'],
                 'anthropic-version' => '2023-06-01',
-                'content-type' => 'application/json'
+                'content-type' => 'application/json',
             ],
-            'json' => $requestPayload
+            'json' => $requestPayload,
         ];
 
         return $requestData;
@@ -548,22 +550,22 @@ class BaseClient
             'body' => [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . $this->extConf['deepseek_api_key']
+                    'Authorization' => 'Bearer ' . $this->extConf['deepseek_api_key'],
                 ],
                 'json' => [
                     'model' => $aiSelectedModel ?: $this->extConf['deepseek_model'],
                     'stop' => $this->extConf['deepseek_stop'] ?? null,
                     'response_format' => [
-                        'type' => $this->extConf['deepseek_response_format'] ?? 'text'
+                        'type' => $this->extConf['deepseek_response_format'] ?? 'text',
                     ],
                     'stream' => (bool)($this->extConf['deepseek_stream'] ?? false),
                     'stream_options' => $this->extConf['deepseek_stream_options'] ?? null,
                     'tools' => $this->extConf['deepseek_tools'] ?? null,
                     'tool_choice' => $this->extConf['deepseek_tool_choice'] ?? 'none',
                     'logprobs' => (bool)($this->extConf['deepseek_logprobs'] ?? false),
-                    'top_logprobs' => null
-                ]
-            ]
+                    'top_logprobs' => null,
+                ],
+            ],
         ];
 
         return $requestData;
@@ -576,18 +578,18 @@ class BaseClient
             'body' => [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . $this->extConf['xai_api_key']
+                    'Authorization' => 'Bearer ' . $this->extConf['xai_api_key'],
                 ],
                 'json' => [
                     'model' => $aiSelectedModel ?: $this->extConf['xai_model'],
                     'messages' => $data['messages'],
                     'response_format' => [
-                        'type' => $this->extConf['xai_response_format'] ?? 'text'
+                        'type' => $this->extConf['xai_response_format'] ?? 'text',
                     ],
                     'temperature' => (float)$this->extConf['xai_temperature'] ?? null,
                     'max_tokens' => 16384,
-                ]
-            ]
+                ],
+            ],
         ];
         return $requestData;
     }
@@ -629,7 +631,7 @@ class BaseClient
         $generatedText = '';
         if (isset($responseArray['content'][0]['text'])) {
             $generatedText = $responseArray['content'][0]['text'];
-            $substring = ":";
+            $substring = ':';
             // Find the position of the first occurrence of the substring
             $position = strpos($generatedText, $substring);
 
@@ -727,8 +729,8 @@ class BaseClient
                     'GET',
                     [
                         'headers' => [
-                            'Authorization' => $authorization
-                        ]
+                            'Authorization' => $authorization,
+                        ],
                     ]
                 );
 
@@ -740,7 +742,7 @@ class BaseClient
                     $errorMessage = $responseData['error']['message'] ?? $responseData['error'] ?? 'Unknown error';
                     return [
                         'success' => false,
-                        'responseData' => $errorMessage
+                        'responseData' => $errorMessage,
                     ];
                 }
 
@@ -766,12 +768,12 @@ class BaseClient
 
             return [
                 'success' => true,
-                'responseData' => $allData
+                'responseData' => $allData,
             ];
         } catch (Exception $e) {
             return [
                 'success' => false,
-                'responseData' => $e->getMessage()
+                'responseData' => $e->getMessage(),
             ];
         }
     }
@@ -783,14 +785,14 @@ class BaseClient
         $requestData['body'] = [
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->extConf['mistral_api_key'],
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
             ],
             'json' => [
                 'model' => $aiSelectedModel ?: $this->extConf['mistral_model'],
                 'messages' => $data['messages'],
                 'temperature' => (float)$this->extConf['mistral_temperature'] ?? 0.7,
                 'max_tokens' => (int)($this->extConf['mistral_max_tokens'] ?? 1024),
-            ]
+            ],
         ];
         return $requestData;
     }
@@ -810,7 +812,7 @@ class BaseClient
         }
     }
 
-        /**
+    /**
      * Get request data for embedding API (OpenAI or Gemini).
      * Returns array with 'url' and 'body' (headers + json) for RequestFactory.
      *
@@ -822,11 +824,9 @@ class BaseClient
     {
         if ($modelType === 'gemini') {
             return $this->getGeminiEmbeddingRequestData($text);
-        }
-        else if ($modelType === 'mistral') {
+        } elseif ($modelType === 'mistral') {
             return $this->getMistralEmbeddingRequestData($text);
-        }
-        else {
+        } else {
             return $this->getOpenAiEmbeddingRequestData($text);
         }
     }
@@ -913,11 +913,9 @@ class BaseClient
     {
         if ($modelType === 'gemini') {
             return $this->parseGeminiEmbeddingResponse($responseData);
-        }
-        else if ($modelType === 'mistral') {
+        } elseif ($modelType === 'mistral') {
             return $this->parseMistralEmbeddingResponse($responseData);
-        }
-        else {
+        } else {
             return $this->parseOpenAiEmbeddingResponse($responseData);
         }
     }
@@ -935,7 +933,7 @@ class BaseClient
                 $result['embedding'] = $item['embedding'];
             }
         }
-        if(isset($responseData['usage']['total_tokens']) && $responseData['usage']['total_tokens'] > 0) {
+        if (isset($responseData['usage']['total_tokens']) && $responseData['usage']['total_tokens'] > 0) {
             $result['token_used'] = $responseData['usage']['total_tokens'];
         }
         return $result;
@@ -961,7 +959,7 @@ class BaseClient
                 $result['embedding'] = $item['embedding'];
             }
         }
-        if(isset($responseData['usage']['total_tokens']) && $responseData['usage']['total_tokens'] > 0) {
+        if (isset($responseData['usage']['total_tokens']) && $responseData['usage']['total_tokens'] > 0) {
             $result['token_used'] = $responseData['usage']['total_tokens'];
         }
         return $result;

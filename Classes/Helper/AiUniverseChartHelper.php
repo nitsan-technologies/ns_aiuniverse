@@ -53,7 +53,7 @@ class AiUniverseChartHelper
                 'generatedTokenData' => [],
                 'totalTokenData' => [],
                 'totalRequests' => 0,
-                'totalTokens' => 0
+                'totalTokens' => 0,
             ];
         }
 
@@ -97,7 +97,7 @@ class AiUniverseChartHelper
             'generatedTokenData' => $generatedTokenData,
             'totalTokenData' => $totalTokenData,
             'totalRequests' => $totalRequests,
-            'totalTokens' => $totalTokens
+            'totalTokens' => $totalTokens,
         ];
     }
 
@@ -149,11 +149,11 @@ class AiUniverseChartHelper
                         'padding' => 15,
                         'usePointStyle' => true,
                         'font' => [
-                            'size' => 11
+                            'size' => 11,
                         ],
                         'boxWidth' => 12,
-                        'boxHeight' => 12
-                    ]
+                        'boxHeight' => 12,
+                    ],
                 ],
                 'tooltip' => [
                     'enabled' => true,
@@ -161,13 +161,13 @@ class AiUniverseChartHelper
                     'displayColors' => true,
                     'titleFont' => [
                         'size' => 13,
-                        'weight' => 'bold'
+                        'weight' => 'bold',
                     ],
                     'bodyFont' => [
-                        'size' => 12
-                    ]
-                ]
-            ]
+                        'size' => 12,
+                    ],
+                ],
+            ],
         ];
 
         // Chart-specific options
@@ -176,22 +176,22 @@ class AiUniverseChartHelper
                 'y' => [
                     'min' => 0,
                     'grid' => [
-                        'color' => 'rgba(0, 0, 0, 0.05)'
+                        'color' => 'rgba(0, 0, 0, 0.05)',
                     ],
                     'ticks' => [
-                        'padding' => 10
-                    ]
+                        'padding' => 10,
+                    ],
                 ],
                 'x' => [
                     'grid' => [
-                        'display' => false
+                        'display' => false,
                     ],
                     'ticks' => [
                         'maxRotation' => 45,
                         'minRotation' => 0,
-                        'padding' => 10
-                    ]
-                ]
+                        'padding' => 10,
+                    ],
+                ],
             ];
         } elseif ($chartType === 'doughnut') {
             $defaultOptions['plugins']['tooltip']['bodySpacing'] = 5;
@@ -217,9 +217,9 @@ class AiUniverseChartHelper
                         'barThickness' => 20,
                         'maxBarThickness' => 40,
                     ],
-                ]
+                ],
             ],
-            'options' => $defaultOptions
+            'options' => $defaultOptions,
         ];
 
         return json_encode($preparedData);
@@ -279,7 +279,7 @@ class AiUniverseChartHelper
             'davinci' => 'Davinci',
             'curie' => 'Curie',
             'babbage' => 'Babbage',
-            'ada' => 'Ada'
+            'ada' => 'Ada',
         ];
         $modelId = str_replace(array_keys($replacements), array_values($replacements), $modelId);
 

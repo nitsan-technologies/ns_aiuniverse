@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace NITSAN\NsAiUniverse\Utility;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * AiUniverseUtilityHelper
@@ -36,6 +36,7 @@ class AiUniverseUtilityHelper
      */
     public static function getLanguageId(): int
     {
+        // @phpstan-ignore-next-line
         $moduleData = BackendUtility::getModuleData(['language'], [], 'web_layout');
         if (isset($moduleData['language'])) {
             return (int)$moduleData['language'];
@@ -55,11 +56,13 @@ class AiUniverseUtilityHelper
         $currentPage = null;
         if ($pageId > 0) {
             if ($languageId === 0) {
+                // @phpstan-ignore-next-line
                 $currentPage = BackendUtility::getRecord(
                     'pages',
                     $pageId
                 );
             } elseif ($languageId > 0) {
+                // @phpstan-ignore-next-line
                 $overlayRecords = BackendUtility::getRecordLocalization(
                     'pages',
                     $pageId,

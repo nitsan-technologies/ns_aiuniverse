@@ -26,7 +26,7 @@ final class AiEngineConfiguration
         'gemini-1.5-flash',
         'gemini-2.0-flash',
         'gemini-2.0-flash-lite',
-        'gemini-2.0-pro-exp'
+        'gemini-2.0-pro-exp',
       ],
       'mistral' => [
         'mistral-large-latest',
@@ -122,7 +122,7 @@ final class AiEngineConfiguration
     {
         $aiEngines = [
           'mainModules' => [],
-          'allModules' => $this->textGenerationAIEngines
+          'allModules' => $this->textGenerationAIEngines,
         ];
         $mainModules = [];
         foreach ($this->textGenerationAIEngines as $key => $engines) {

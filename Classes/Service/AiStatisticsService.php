@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace NITSAN\NsAiUniverse\Service;
 
-use TYPO3\CMS\Core\Cache\CacheManager;
-use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use NITSAN\NsAiUniverse\Client\BaseClient;
 use NITSAN\NsAiUniverse\Helper\AiUniverseChartHelper;
 use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
+use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * AiStatisticsService
@@ -78,7 +78,7 @@ class AiStatisticsService
                 return [
                     'success' => false,
                     'error' => $this->formatErrorMessage($apiData['responseData'] ?? 'Unknown error'),
-                    'data' => null
+                    'data' => null,
                 ];
             }
 
@@ -100,8 +100,8 @@ class AiStatisticsService
             'charts' => $chartConfigs,
             'summary' => [
                 'totalRequests' => $proceedData['totalRequests'],
-                'totalTokens' => $proceedData['totalTokens']
-            ]
+                'totalTokens' => $proceedData['totalTokens'],
+            ],
         ];
     }
 
@@ -154,11 +154,11 @@ class AiStatisticsService
         if (str_contains($error, "You've exceeded the 5 request/min rate limit")) {
             return "You've exceeded the 5 request/min rate limit, please slow down and try again";
         }
-        if (str_contains($error, "Invalid authorization header")) {
-            return "Invalid authorization header";
+        if (str_contains($error, 'Invalid authorization header')) {
+            return 'Invalid authorization header';
         }
-        if (str_contains($error, "Incorrect API key provided")) {
-            return "Incorrect API key provided";
+        if (str_contains($error, 'Incorrect API key provided')) {
+            return 'Incorrect API key provided';
         }
         return $error;
     }

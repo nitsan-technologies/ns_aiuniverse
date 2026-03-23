@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace NITSAN\NsAiUniverse\Utility;
 
-use TYPO3\CMS\Core\Http\ServerRequestFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Http\ServerRequestFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * HttpAuthUtility
@@ -109,7 +108,7 @@ class HttpAuthUtility
         if ($this->isBasicAuthEnabled()) {
             return [
                 'username' => $this->extConf['basicAuthUsername'],
-                'password' => $this->extConf['basicAuthPassword']
+                'password' => $this->extConf['basicAuthPassword'],
             ];
         }
 

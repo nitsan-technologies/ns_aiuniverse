@@ -8,3 +8,4 @@
 .idea/
 .fleet/
 /var/
+.php-cs-fixer.cache

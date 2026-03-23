@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace NITSAN\NsAiUniverse\Service;
 
-use Psr\Log\LoggerInterface;
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
-use TYPO3\CMS\Core\Log\LogManager;
-use TYPO3\CMS\Core\Database\ConnectionPool;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AiLogService
 {
