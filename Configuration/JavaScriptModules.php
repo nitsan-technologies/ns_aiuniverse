@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $javascriptModules = [
     'dependencies' => ['core', 'backend'],
     'imports' => [
