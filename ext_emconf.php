@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $EM_CONF['ns_aiuniverse'] = [
     'title' => 'AI Universe',
     'description' => 'AI Universe is the shared AI foundation layer for TYPO3 extensions. It centralizes AI provider communication, model selection, request handling, statistics preparation, and utility functions so other extensions can build AI features faster and with consistent behavior.',

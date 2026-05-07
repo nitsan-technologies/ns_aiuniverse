@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NITSAN\NsAiUniverse\Configuration;
 
 use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
 
 final class AiEngineConfiguration
 {
-    private $textGenerationAIEngines = [
+    private array $textGenerationAIEngines = [
       'openai' => [
         'gpt-5',
         'gpt-4.1',
@@ -24,7 +26,7 @@ final class AiEngineConfiguration
         'gemini-1.5-flash',
         'gemini-2.0-flash',
         'gemini-2.0-flash-lite',
-        'gemini-2.0-pro-exp'
+        'gemini-2.0-pro-exp',
       ],
       'mistral' => [
         'mistral-large-latest',
@@ -104,7 +106,7 @@ final class AiEngineConfiguration
      * Customize for usage in AI Log module
      * @return array
      */
-    public function getAllEngines()
+    public function getAllEngines(): array
     {
         $aiEngines = [];
         foreach ($this->textGenerationAIEngines as $key => $textModule) {
@@ -116,11 +118,11 @@ final class AiEngineConfiguration
     /**
      * Customize for the usage of AI Log Module
      */
-    public function getTextGenerateEngines()
+    public function getTextGenerateEngines(): array
     {
         $aiEngines = [
           'mainModules' => [],
-          'allModules' => $this->textGenerationAIEngines
+          'allModules' => $this->textGenerationAIEngines,
         ];
         $mainModules = [];
         foreach ($this->textGenerationAIEngines as $key => $engines) {

@@ -1,0 +1,72 @@
+name: extension ci
+
+on:
+  push:
+    paths:
+      - 'Classes/**'
+      - 'Configuration/**'
+      - 'Tests/**'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'phpstan.neon'
+      - 'phpunit.xml.dist'
+      - '.php-cs-fixer.php'
+      - '.editorconfig'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'Classes/**'
+      - 'Configuration/**'
+      - 'Tests/**'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'phpstan.neon'
+      - 'phpunit.xml.dist'
+      - '.php-cs-fixer.php'
+      - '.editorconfig'
+      - '.github/workflows/ci.yml'
+
+jobs:
+  quality:
+    name: quality and tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: composer:v2
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            .Build/vendor
+            ~/.composer/cache/files
+          key: ${{ runner.os }}-php84-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php84-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: PHP syntax check
+        run: |
+          while IFS= read -r file; do
+            php -l "$file";
+          done < <(find Classes Configuration Tests -name "*.php")
+
+      - name: Coding standards (non-blocking for baseline)
+        run: composer cs:check
+        continue-on-error: true
+
+      - name: Static analysis
+        run: composer stan
+
+      - name: Unit tests
+        run: composer test

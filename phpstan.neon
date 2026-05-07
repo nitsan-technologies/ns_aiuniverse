@@ -1,0 +1,9 @@
+parameters:
+  level: 3
+  paths:
+    - Classes
+    - Tests
+  parallel:
+    maximumNumberOfProcesses: 1
+  tmpDir: .Build/phpstan
+  treatPhpDocTypesAsCertain: false

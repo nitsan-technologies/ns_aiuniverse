@@ -36,6 +36,11 @@
             "NITSAN\\NsAiUniverse\\": "Classes"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "NITSAN\\NsAiUniverse\\Tests\\": "Tests/"
+        }
+    },
     "replace": {
         "typo3-ter/ns-aiuniverse": "self.version"
     },
@@ -56,9 +61,20 @@
         }
     },
     "scripts": {
-        "doc-watch": "docker run --rm -it --pull always -v \"$(pwd)/Documentation:/project/Documentation\" -v \"$(pwd)/Documentation-GENERATED-temp:/project/Documentation-GENERATED-temp\" -p 1337:1337 ghcr.io/typo3-documentation/render-guides:latest --config=Documentation --watch"
+        "cs:check": ".Build/bin/php-cs-fixer fix --dry-run --diff",
+        "doc-watch": "docker run --rm -it --pull always -v \"$(pwd)/Documentation:/project/Documentation\" -v \"$(pwd)/Documentation-GENERATED-temp:/project/Documentation-GENERATED-temp\" -p 1337:1337 ghcr.io/typo3-documentation/render-guides:latest --config=Documentation --watch",
+        "stan": ".Build/bin/phpstan analyse --memory-limit=512M",
+        "test": ".Build/bin/phpunit -c phpunit.xml.dist"
     },
     "scripts-descriptions": {
-        "doc-watch": "Render documentation with watcher"
+        "cs:check": "Run PHP-CS-Fixer in dry-run mode",
+        "doc-watch": "Render documentation with watcher",
+        "stan": "Run PHPStan static analysis",
+        "test": "Run PHPUnit test suite"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.94",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^13.0"
     }
 }

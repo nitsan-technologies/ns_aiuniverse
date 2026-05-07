@@ -6,10 +6,10 @@ namespace NITSAN\NsAiUniverse\Service;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
-use TYPO3\CMS\Core\Http\RequestFactory;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use NITSAN\NsAiUniverse\Client\BaseClient;
 use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
+use TYPO3\CMS\Core\Http\RequestFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * AiRequestService
