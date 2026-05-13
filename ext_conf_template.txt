@@ -1,8 +1,8 @@
 # cat=AI Engine//10; type=options[openai,gemini,azure,claude,customllm, deepseek, xai, mistral]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model.default;
 defaultModel = openai
 
-# cat=AI Engine//20; type=options[gpt-4.1,gpt-4o,gpt-4,gpt-3.5-turbo,gpt-5, openai-oss]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultOpenAIModel
-defaultOpenAIModel = gpt-4o
+# cat=AI Engine//20; type=options[gpt-4.1, gpt-5, gpt-5.4-mini, gpt-5.4-pro, gpt-5.4-nano, openai-oss]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultOpenAIModel
+defaultOpenAIModel = gpt-4.1
 
 # cat=AI Engine//15; type=options[openai, mistral, gemini, customllm]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultEmbeddingsModel;
 defaultEmbeddingsModel = openai
@@ -16,8 +16,8 @@ openai_oss_api_key =
 # cat=ChatGPT//23; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.openai_oss_api_model
 openai_oss_api_model =
 
-# cat=AI Engine//30; type=options[gemini-1.5-pro, gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite, gemini-2.0-pro-exp]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultGeminiModel
-defaultGeminiModel = gemini-1.5-flash
+# cat=AI Engine//30; type=options[gemini-2.5-pro, gemini-2.0-flash, gemini-2.5-flash, gemini-2.5-flash-lite]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultGeminiModel
+defaultGeminiModel = gemini-2.5-flash
 
 # cat=AI Engine//40; type=options[claude-opus-4-6,claude-sonnet-4-6,claude-haiku-4-5]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultClaudeModel
 defaultClaudeModel = claude-haiku-4-5
@@ -40,8 +40,8 @@ openai_api_key =
 # cat=ChatGPT//12; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.adminApiKey
 openai_admin_api_key =
 
-# cat=ChatGPT//15; type=options[gpt-4.1,gpt-4o,gpt-4,gpt-3.5-turbo,gpt-5, openai-oss]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model
-openai_model = gpt-4o
+# cat=ChatGPT//15; type=options[gpt-4.1, gpt-5, gpt-5.4-mini, gpt-5.4-pro, gpt-5.4-nano, openai-oss]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model
+openai_model = gpt-4.1
 
 # cat=ChatGPT//16; type=options[text-embedding-3-small, text-embedding-3-large, text-embedding-ada-002]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:text.embedding.model
 openai_embedding_model = text-embedding-3-small
@@ -88,11 +88,11 @@ google_api_url = https://translation.googleapis.com/language/translate/v2
 # cat=gemini//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.gemini_api_key
 gemini_api_key =
 
-# cat=gemini//20; type=options[gemini-1.5-pro, gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite, gemini-2.0-pro-exp]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.gemini_api_model
-gemini_model = gemini-1.5-flash
+# cat=gemini//20; type=options[gemini-2.5-pro, gemini-2.0-flash, gemini-2.5-flash, gemini-2.5-flash-lite]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.gemini_api_model
+gemini_model = gemini-2.5-flash
 
-# cat=gemini//16; type=options[text-embedding-004]; label=LLL:EXT:ns_t3ac/Resources/Private/Language/locallang_be.xlf:text.embedding.model
-gemini_embedding_model = text-embedding-004
+# cat=gemini//16; type=options[text-embedding-004,gemini-embedding-001,gemini-embedding-2]; label=LLL:EXT:ns_t3ac/Resources/Private/Language/locallang_be.xlf:text.embedding.model
+gemini_embedding_model = gemini-embedding-001
 
 # cat=azure//01; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.azure_api_key
 azure_api_key =
@@ -172,7 +172,7 @@ xai_response_format = text
 # cat=Mistral//10; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.mistral_api_key
 mistral_api_key =
 
-# cat=Mistral//15; type=options[mistral-large-latest, mistral-small-latest, magistral-small-latest, magistral-medium-latest]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.mistral_model
+# cat=Mistral//15; type=options[mistral-large-latest, mistral-small-latest,magistral-medium]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.mistral_model
 mistral_model = mistral-large-latest
 
 # cat=Mistral//20; type=options[mistral-embed]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:text.embedding.model
