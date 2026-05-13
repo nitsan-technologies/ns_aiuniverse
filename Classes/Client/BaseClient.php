@@ -865,7 +865,7 @@ class BaseClient
      */
     protected function getGeminiEmbeddingRequestData(string $text): array
     {
-        $model = $this->extConf['gemini_embedding_model'] ?? 'text-embedding-004';
+        $model = $this->extConf['gemini_embedding_model'] ?? 'gemini-embedding-001';
         $jsonContent = [
             'model' => $model,
             'content' => [
