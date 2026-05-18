@@ -1,10 +1,10 @@
-# cat=AI Engine//10; type=options[openai,gemini,azure,claude,customllm, deepseek, xai, mistral]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model.default;
+# cat=AI Engine//10; type=options[openai,gemini,azure,claude,customllm, deepseek, xai, mistral, ollama]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model.default;
 defaultModel = openai
 
 # cat=AI Engine//20; type=options[gpt-4.1, gpt-5, gpt-5.4-mini, gpt-5.4-pro, gpt-5.4-nano, openai-oss]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultOpenAIModel
 defaultOpenAIModel = gpt-4.1
 
-# cat=AI Engine//15; type=options[openai, mistral, gemini, customllm]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultEmbeddingsModel;
+# cat=AI Engine//15; type=options[openai, mistral, gemini, customllm, huggingface, ollama]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.defaultEmbeddingsModel;
 defaultEmbeddingsModel = openai
 
 # cat=ChatGPT//21; type=string; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.openai_oss_api_url
@@ -183,6 +183,15 @@ mistral_temperature = 0.7
 
 # cat=Mistral//30; type=int+; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.max_tokens
 mistral_max_tokens = 1024
+
+# cat=Ollama//10; type=string; label=Ollama API URL
+ollama_api_url = http://localhost:11434
+
+# cat=Ollama//15; type=string; label=Ollama Model Name
+ollama_model = gemma3:27b-cloud
+
+# cat=Ollama//20; type=int+; label=Ollama Max Tokens
+ollama_max_tokens = 2048
 
 # cat=translation//10; type=options[openai=nst3ai,deepl=deepl,gemini=geminiai,google=google,claude=claudeai]; label=LLL:EXT:ns_aiuniverse/Resources/Private/Language/locallang_be.xlf:extmng.model.defaultModelForTranslation;
 defaultModelForTranslation = openai
