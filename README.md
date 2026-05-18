@@ -1,4 +1,4 @@
-[![Latest Stable Version](https://img.shields.io/badge/Stable-1.0.0-success)](https://extensions.typo3.org/extension/ns_aiuniverse/)
+[![Latest Stable Version](https://img.shields.io/badge/Stable-1.0.2-success)](https://extensions.typo3.org/extension/ns_aiuniverse/)
 [![AI Universe Github](https://img.shields.io/badge/AI--Universe-informational?logo=github)](https://github.com/nitsan-technologies/ns_aiuniverse)
 [![TYPO3 13](https://img.shields.io/badge/TYPO3-13-important.svg?logo=typo3)](https://get.typo3.org/version/13)
 [![TYPO3 12](https://img.shields.io/badge/TYPO3-12-important.svg?logo=typo3)](https://get.typo3.org/version/12)
