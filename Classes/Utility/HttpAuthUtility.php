@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace NITSAN\NsAiUniverse\Utility;
 
-use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * HttpAuthUtility

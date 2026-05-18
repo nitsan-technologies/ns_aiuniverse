@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace NITSAN\NsAiUniverse\Service;
 
-use NITSAN\NsAiUniverse\Client\BaseClient;
-use NITSAN\NsAiUniverse\Helper\AiUniverseChartHelper;
-use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use NITSAN\NsAiUniverse\Client\BaseClient;
+use NITSAN\NsAiUniverse\Helper\AiUniverseChartHelper;
+use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
 
 /**
  * AiStatisticsService

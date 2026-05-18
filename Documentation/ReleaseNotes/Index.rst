@@ -13,3 +13,5 @@ Version-wise release notes for AI Universe.
    :titlesonly:
 
    1.0.0/Index
+   1.0.1/Index
+   1.0.2/Index
