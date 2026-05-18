@@ -1,5 +1,7 @@
 parameters:
   level: 3
+  stubFiles:
+    - stubs/Parsedown.stub.php
   paths:
     - Classes
     - Tests

@@ -1127,8 +1127,8 @@ class BaseClient
     protected function getOllamaResponseData($responseArray): string
     {
         $text = (string)($responseArray['choices'][0]['message']['content'] ?? '');
-        if ($text === '') {
-            return '';
+        if ($text === '' || !class_exists(\Parsedown::class)) {
+            return $text;
         }
         $parsedown = new \Parsedown();
         $parsedown->setSafeMode(true);
