@@ -194,7 +194,6 @@ class BaseClient
      */
     public function buildMessageHistory(string $engine, string $systemContent, string $userMessage): array
     {
-        $userMessage = $userMessage ?? '';
         if ($engine === 'gemini') {
             return [
                 ['role' => 'user', 'parts' => [['text' => $systemContent]]],
@@ -291,7 +290,7 @@ class BaseClient
         ];
         if (strpos($model, 'gpt-5') === 0) {
             $data['max_completion_tokens'] = $data['max_tokens'] ?? (int)($this->extConf['openai_max_tokens'] ?? 1024);
-            unset($data['max_tokens'], $data['temperature'], $data['top_p'], $data['presence_penalty'], $data['frequency_penalty']);
+            unset($data['max_tokens'], $data['temperature'], $data['presence_penalty'], $data['frequency_penalty']);
         }
         $requestData = [];
         $requestData['url'] = $this->nonLegacyModel ? self::OPENAI_API_URL . self::OPENAI_CHAT_ENDPOINT : self::OPENAI_LEGACY_API_URL;
