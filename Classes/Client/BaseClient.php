@@ -151,7 +151,10 @@ class BaseClient
         if ($type === 'ollama') {
             return $this->getOllamaStreamRequestData($messagesOrContents, $options, $aiSelectedModel);
         }
-        return [];
+        return [
+            'url' => '',
+            'body' => [],
+        ];
     }
 
     /**
