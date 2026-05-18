@@ -1,6 +1,6 @@
 .. include:: /Includes.rst.txt
 
-.. _release-notes-1-0-0:
+.. _release-notes-1-0-2:
 
 ======================
 1.0.2 - 18 May 2026
