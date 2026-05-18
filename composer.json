@@ -29,7 +29,8 @@
     },
     "require": {
         "typo3/cms-core": "^11 || ^12 || ^13",
-        "php": "^7.4 || ^8"
+        "php": "^7.4 || ^8",
+        "erusev/parsedown": "^1.7"
     },
     "autoload": {
         "psr-4": {
