@@ -1135,4 +1135,70 @@ class BaseClient
 
         return $parsedown->text($text);
     }
+
+    /**
+     * Build multi-turn chat payload for streaming (OpenAI / Mistral / Claude messages, or Gemini contents).
+     * Used by extensions such as T3AS AI Search chat; pairs with getStreamRequestData() / getStreamChunkText().
+     *
+     * @param string $engine 'openai', 'mistral', 'claude', or 'gemini'
+     * @param string $fullSystemPrompt Full system string (caller may embed search context)
+     * @param list<array{role: string, content: string}> $history Prior user/assistant turns (normalized by caller)
+     * @param string $currentUserMessage Current user message
+     * @return array<int, array<string, mixed>> Ready for getStreamRequestData()
+     */
+    public function buildMultiTurnChatMessages(
+        string $engine,
+        string $fullSystemPrompt,
+        array $history,
+        string $currentUserMessage
+    ): array {
+        if ($engine === 'gemini') {
+            return $this->buildGeminiMultiTurnContents($fullSystemPrompt, $history, $currentUserMessage);
+        }
+
+        return $this->buildOpenAiStyleMultiTurnMessages($fullSystemPrompt, $history, $currentUserMessage);
+    }
+
+        /**
+     * @param list<array{role: string, content: string}> $history
+     * @return list<array{role: string, content: string}>
+     */
+    private function buildOpenAiStyleMultiTurnMessages(
+        string $fullSystem,
+        array $history,
+        string $currentUserMessage
+    ): array {
+        $messages = [['role' => 'system', 'content' => $fullSystem]];
+        foreach ($history as $turn) {
+            $role = (($turn['role'] ?? '') === 'assistant') ? 'assistant' : 'user';
+            $messages[] = ['role' => $role, 'content' => (string)($turn['content'] ?? '')];
+        }
+        $messages[] = ['role' => 'user', 'content' => $currentUserMessage];
+
+        return $messages;
+    }
+
+    /**
+     * @param list<array{role: string, content: string}> $history
+     * @return list<array<string, mixed>>
+     */
+    private function buildGeminiMultiTurnContents(
+        string $fullSystem,
+        array $history,
+        string $currentUserMessage
+    ): array {
+        $contents = [
+            ['role' => 'user', 'parts' => [['text' => $fullSystem]]],
+        ];
+        foreach ($history as $turn) {
+            if (($turn['role'] ?? '') === 'assistant') {
+                $contents[] = ['role' => 'model', 'parts' => [['text' => (string)($turn['content'] ?? '')]]];
+            } else {
+                $contents[] = ['role' => 'user', 'parts' => [['text' => (string)($turn['content'] ?? '')]]];
+            }
+        }
+        $contents[] = ['role' => 'user', 'parts' => [['text' => $currentUserMessage]]];
+
+        return $contents;
+    }
 }
