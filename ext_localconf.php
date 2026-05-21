@@ -16,8 +16,3 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][1779278704] = 'EXT:ns_aiuniverse/Resources/Private/Templates/Email/';
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['layoutRootPaths'][1779278704] = 'EXT:ns_aiuniverse/Resources/Private/Layouts/Email/';
-
-// Add Custom TYPO3 Backend Login Screen
-if (empty($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage'])) {
-    $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage'] = 'EXT:ns_aiuniverse/Resources/Public/Images/t3planet-logo.png';
-}
