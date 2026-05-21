@@ -6,6 +6,7 @@ namespace NITSAN\NsAiUniverse\Service;
 
 use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Cache\CacheManager;
@@ -24,7 +25,7 @@ final class AiApiAlertNotificationService
 {
     private const CACHE_NAME = 'nsaiuniverse_api_alert';
     private const CACHE_IDENTIFIER_PREFIX = 'api_alert_mail_';
-    private const COOLDOWN_SECONDS = 3600;
+    private const COOLDOWN_SECONDS = 60; // 3600
 
     private FrontendInterface $cache;
 
@@ -36,8 +37,11 @@ final class AiApiAlertNotificationService
     /**
      * Notify configured recipient when the error matches quota or API-key issues.
      */
-    public function notifyIfApplicable(string $errorMessage, string $occurFrom = 'ns_aiuniverse'): void
-    {
+    public function notifyIfApplicable(
+        string $errorMessage,
+        string $occurFrom = 'ns_aiuniverse',
+        ?string $aiEngine = null
+    ): void {
         $category = $this->classifyError($errorMessage);
         if ($category === null) {
             return;
@@ -53,13 +57,36 @@ final class AiApiAlertNotificationService
             return;
         }
 
-        $cacheKey = self::CACHE_IDENTIFIER_PREFIX . $category;
+        $cacheKey = self::CACHE_IDENTIFIER_PREFIX . $category . '_' . preg_replace('/[^a-z0-9_]/', '_', strtolower($occurFrom));
         if ($this->cache->get($cacheKey) !== false) {
             return;
         }
 
-        $this->sendNotificationEmail($recipient, $errorMessage, $occurFrom, $category);
+        $this->sendNotificationEmail(
+            $recipient,
+            $errorMessage,
+            $occurFrom,
+            $category,
+            $this->resolveAiEngineForNotification($aiEngine, $occurFrom)
+        );
         $this->cache->set($cacheKey, 1, [], self::COOLDOWN_SECONDS);
+    }
+
+    /**
+     * Log a quota/API-key error to sys_log and send the configured alert email (T3AS, T3AC, etc.).
+     */
+    public function reportApiError(
+        string $errorMessage,
+        string $occurFrom = 'ns_aiuniverse',
+        ?string $aiEngine = null
+    ): void {
+        $errorMessage = trim($errorMessage);
+        if ($errorMessage === '' || $this->classifyError($errorMessage) === null) {
+            return;
+        }
+
+        $logMessage = str_starts_with($errorMessage, 'Error ') ? $errorMessage : 'Error ' . $errorMessage;
+        GeneralUtility::makeInstance(AiLogService::class)->writeLog($logMessage, 'error', $occurFrom, $aiEngine);
     }
 
     /**
@@ -112,7 +139,8 @@ final class AiApiAlertNotificationService
         string $recipient,
         string $errorMessage,
         string $occurFrom,
-        string $category
+        string $category,
+        string $aiEngine
     ): void {
         $subject = $category === 'quota'
             ? (LocalizationUtility::translate('email.apiAlert.subject.quota', 'ns_aiuniverse')
@@ -120,14 +148,13 @@ final class AiApiAlertNotificationService
             : (LocalizationUtility::translate('email.apiAlert.subject.apiKey', 'ns_aiuniverse')
                 ?: 'AI API authentication error');
 
-        $content = $this->buildMailBody($errorMessage, $occurFrom);
+        $content = $this->buildMailBody($errorMessage, $occurFrom, $aiEngine);
 
         $fromAddress = trim((string)($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] ?? ''));
-        $fromName = trim((string)($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'] ?? 'TYPO3'));
+        $fromName = trim((string)($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'] ?? 'T3 Planet'));
 
         try {
-            // $email = $this->createFluidEmail()
-            $email = new FluidEmail();
+            $email = $this->createFluidEmail();
             $email
                 ->to($recipient)
                 ->subject($subject)
@@ -163,25 +190,88 @@ final class AiApiAlertNotificationService
             'EXT:ns_aiuniverse/Resources/Private/Templates/Email/',
         ]);
         $templatePaths->setLayoutRootPaths([
-            'EXT:ns_aiuniverse/Resources/Private/Layouts/',
-            'EXT:core/Resources/Private/Layouts/',
+            'EXT:ns_aiuniverse/Resources/Private/Layouts/Email/',
         ]);
 
         return GeneralUtility::makeInstance(FluidEmail::class, $templatePaths);
     }
 
-    private function buildMailBody(string $errorMessage, string $occurFrom): string
+    private function buildMailBody(string $errorMessage, string $occurFrom, string $aiEngine): string
     {
+        $aiEngineLabel = LocalizationUtility::translate('email.apiAlert.aiEngine', 'ns_aiuniverse') ?: 'AI Engine';
         $errorLabel = LocalizationUtility::translate('email.apiAlert.errorMessage', 'ns_aiuniverse') ?: 'Error Message';
-        $occurLabel = LocalizationUtility::translate('email.apiAlert.occurFrom', 'ns_aiuniverse') ?: 'Occur from';
+        $occurLabel = LocalizationUtility::translate('email.apiAlert.occurFrom', 'ns_aiuniverse') ?: 'Generated from';
         $timeLabel = LocalizationUtility::translate('email.apiAlert.timestamp', 'ns_aiuniverse') ?: 'Time';
 
+        $aiEngineEscaped = htmlspecialchars($aiEngine, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $errorMessageEscaped = htmlspecialchars(trim($errorMessage), ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $occurFromEscaped = htmlspecialchars($occurFrom, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $timestamp = $this->formatTimestampWithTimezone();
 
-        return htmlspecialchars($errorLabel, ENT_QUOTES | ENT_HTML5, 'UTF-8') . ': ' . $errorMessageEscaped
+        return htmlspecialchars($aiEngineLabel, ENT_QUOTES | ENT_HTML5, 'UTF-8') . ' : ' . $aiEngineEscaped
+            . '<br /><br />' . htmlspecialchars($errorLabel, ENT_QUOTES | ENT_HTML5, 'UTF-8') . ': ' . $errorMessageEscaped
             . '<br /><br />' . htmlspecialchars($occurLabel, ENT_QUOTES | ENT_HTML5, 'UTF-8') . ' : ' . $occurFromEscaped
             . '<br /><br />' . htmlspecialchars($timeLabel, ENT_QUOTES | ENT_HTML5, 'UTF-8')
-            . ': ' . date('Y-m-d H:i:s');
+            . ': ' . htmlspecialchars($timestamp, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    }
+
+    private function resolveAiEngineForNotification(?string $aiEngine, string $occurFrom): string
+    {
+        if ($aiEngine !== null && trim($aiEngine) !== '') {
+            return $this->normalizeEngineName($aiEngine);
+        }
+
+        return $this->resolveAiEngine($occurFrom);
+    }
+
+    private function resolveAiEngine(string $occurFrom): string
+    {
+        $aiuniverse = AiUniverseUtilityHelper::getExtensionConf('ns_aiuniverse');
+
+        if ($occurFrom === 'ns_t3ac' && ExtensionManagementUtility::isLoaded('ns_t3ac')) {
+            $t3ac = AiUniverseUtilityHelper::getExtensionConf('ns_t3ac');
+            $chatModel = (string)($t3ac['defaultChatModel'] ?? '');
+            if ($chatModel !== '' && $chatModel !== 'default') {
+                return $this->normalizeEngineName($chatModel);
+            }
+        }
+
+        if (in_array($occurFrom, ['ns_t3as', 'ns_t3ac', 'ns_t3cs'], true) && ExtensionManagementUtility::isLoaded('ns_t3cs')) {
+            $t3cs = AiUniverseUtilityHelper::getExtensionConf('ns_t3cs');
+            $model = (string)($t3cs['defaultModel'] ?? '');
+            if ($model === '' || $model === 'default') {
+                return $this->normalizeEngineName((string)($aiuniverse['defaultModel'] ?? 'unknown'));
+            }
+
+            return $this->normalizeEngineName($model);
+        }
+
+        return $this->normalizeEngineName(
+            (string)($aiuniverse['defaultModel'] ?? $aiuniverse['defaultGenerationModel'] ?? 'unknown')
+        );
+    }
+
+    private function normalizeEngineName(string $engine): string
+    {
+        return strtolower(trim($engine));
+    }
+
+    private function formatTimestampWithTimezone(): string
+    {
+        $timezoneIdentifier = trim((string)($GLOBALS['TYPO3_CONF_VARS']['SYS']['timezone'] ?? 'UTC'));
+        if ($timezoneIdentifier === '') {
+            $timezoneIdentifier = 'UTC';
+        }
+
+        try {
+            $timezone = new \DateTimeZone($timezoneIdentifier);
+        } catch (\Exception $exception) {
+            $timezone = new \DateTimeZone('UTC');
+            $timezoneIdentifier = 'UTC';
+        }
+
+        $dateTime = new \DateTimeImmutable('now', $timezone);
+
+        return $dateTime->format('Y-m-d H:i:s') . ' (' . $timezoneIdentifier . ')';
     }
 }

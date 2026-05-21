@@ -30,7 +30,12 @@ class AiLogService
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 
-    public function writeLog(string $logMessage, string $logLevel, string $module = 'ns_aiuniverse'): void
+    public function writeLog(
+        string $logMessage,
+        string $logLevel,
+        string $module = 'ns_aiuniverse',
+        ?string $aiEngine = null
+    ): void
     {
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('sys_log');
@@ -71,7 +76,7 @@ class AiLogService
 
             if ($logLevel === 'error') {
                 GeneralUtility::makeInstance(AiApiAlertNotificationService::class)
-                    ->notifyIfApplicable($logMessage, $module);
+                    ->notifyIfApplicable($logMessage, $module, $aiEngine);
             }
         }
     }

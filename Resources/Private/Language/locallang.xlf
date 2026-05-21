@@ -9,6 +9,9 @@
             <trans-unit id="email.apiAlert.subject.apiKey" resname="email.apiAlert.subject.apiKey">
                 <source>API Authentication Error</source>
             </trans-unit>
+            <trans-unit id="email.apiAlert.aiEngine" resname="email.apiAlert.aiEngine">
+                <source>AI Engine</source>
+            </trans-unit>
             <trans-unit id="email.apiAlert.errorMessage" resname="email.apiAlert.errorMessage">
                 <source>Error Message</source>
             </trans-unit>
