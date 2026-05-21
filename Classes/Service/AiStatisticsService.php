@@ -75,9 +75,13 @@ class AiStatisticsService
             $apiData = $this->baseClient->getOpenAiUsageData($date, $dateScope);
 
             if (!$apiData['success']) {
+                $error = $this->formatErrorMessage($apiData['responseData'] ?? 'Unknown error');
+                GeneralUtility::makeInstance(AiApiAlertNotificationService::class)
+                    ->notifyIfApplicable($error, $this->extensionKey);
+
                 return [
                     'success' => false,
-                    'error' => $this->formatErrorMessage($apiData['responseData'] ?? 'Unknown error'),
+                    'error' => $error,
                     'data' => null,
                 ];
             }

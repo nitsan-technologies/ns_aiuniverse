@@ -68,6 +68,11 @@ class AiLogService
                     'workspace' => $workspace,
                 ]
             );
+
+            if ($logLevel === 'error') {
+                GeneralUtility::makeInstance(AiApiAlertNotificationService::class)
+                    ->notifyIfApplicable($logMessage, $module);
+            }
         }
     }
 
