@@ -74,6 +74,7 @@ class AiLogService
                 ]
             );
 
+            // Email only for quota / API-key errors; all error-level rows stay in sys_log.
             if ($logLevel === 'error') {
                 GeneralUtility::makeInstance(AiApiAlertNotificationService::class)
                     ->notifyIfApplicable($logMessage, $module, $aiEngine);

@@ -73,7 +73,9 @@ final class AiApiAlertNotificationService
     }
 
     /**
-     * Log a quota/API-key error to sys_log and send the configured alert email (T3AS, T3AC, etc.).
+     * Log any stream/API error to sys_log (T3AS, T3AC, etc.).
+     * Alert email is sent only when {@see classifyError()} matches quota or API-key issues
+     * (via {@see AiLogService::writeLog()} → {@see notifyIfApplicable()}).
      */
     public function reportApiError(
         string $errorMessage,
@@ -81,7 +83,7 @@ final class AiApiAlertNotificationService
         ?string $aiEngine = null
     ): void {
         $errorMessage = trim($errorMessage);
-        if ($errorMessage === '' || $this->classifyError($errorMessage) === null) {
+        if ($errorMessage === '') {
             return;
         }
 
