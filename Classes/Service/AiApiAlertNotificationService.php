@@ -6,16 +6,17 @@ namespace NITSAN\NsAiUniverse\Service;
 
 use NITSAN\NsAiUniverse\Utility\AiUniverseUtilityHelper;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Mail\FluidEmail;
+use TYPO3\CMS\Core\Mail\Mailer;
 use TYPO3\CMS\Core\Mail\MailerInterface;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\TemplatePaths;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Fluid\View\TemplatePaths;
 
 /**
  * Sends email alerts for critical AI API failures (quota exceeded, invalid API key).
@@ -177,7 +178,13 @@ final class AiApiAlertNotificationService
                 $email->setRequest($request);
             }
 
-            GeneralUtility::makeInstance(MailerInterface::class)->send($email);
+            $version = AiUniverseUtilityHelper::getTypo3MajorVersion();
+            if ($version === 11) {
+                GeneralUtility::makeInstance(MailerInterface::class)->send($email);
+            } else {
+                GeneralUtility::makeInstance(Mailer::class)->send($email);
+            }
+            // GeneralUtility::makeInstance(MailerInterface::class)->send($email);
         } catch (TransportExceptionInterface $exception) {
             // Mail transport not configured — do not break AI flows.
         } catch (\Throwable $exception) {
