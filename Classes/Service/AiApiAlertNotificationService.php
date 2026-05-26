@@ -154,8 +154,7 @@ final class AiApiAlertNotificationService
         $content = $this->buildMailBody($errorMessage, $occurFrom, $aiEngine);
 
         $fromAddress = trim((string)($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] ?? ''));
-        $fromName = trim((string)($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'] ?? 'T3 Planet'));
-
+        $fromName = trim((string)($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName']!=='' ? $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'] : 'T3 Planet AI Universe'));
         try {
             $email = $this->createFluidEmail();
             $email
@@ -170,7 +169,7 @@ final class AiApiAlertNotificationService
                 ]);
 
             if ($fromAddress !== '' && GeneralUtility::validEmail($fromAddress)) {
-                $email->from(new Address($fromAddress, $fromName !== '' ? $fromName : 'TYPO3'));
+                $email->from(new Address($fromAddress, $fromName !== '' ? $fromName : 'T3 Planet AI Universe'));
             }
 
             $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
@@ -180,11 +179,10 @@ final class AiApiAlertNotificationService
 
             $version = AiUniverseUtilityHelper::getTypo3MajorVersion();
             if ($version === 11) {
-                GeneralUtility::makeInstance(MailerInterface::class)->send($email);
-            } else {
                 GeneralUtility::makeInstance(Mailer::class)->send($email);
+            } else {
+                GeneralUtility::makeInstance(MailerInterface::class)->send($email);
             }
-            // GeneralUtility::makeInstance(MailerInterface::class)->send($email);
         } catch (TransportExceptionInterface $exception) {
             // Mail transport not configured — do not break AI flows.
         } catch (\Throwable $exception) {
