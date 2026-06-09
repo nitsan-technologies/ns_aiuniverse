@@ -227,6 +227,14 @@
 			<trans-unit id="extConfiguration.basicAuthPassword" resname="extConfiguration.basicAuthPassword">
 				<source>Basic Auth Password: Enter password for basic authentication.</source>
 			</trans-unit>
+
+			<!-- API quota / authentication email notifications -->
+			<trans-unit id="extmng.enableApiQuotaEmailNotification" resname="extmng.enableApiQuotaEmailNotification">
+				<source>Enable email notification on API quota or authentication errors</source>
+			</trans-unit>
+			<trans-unit id="extmng.apiQuotaNotificationEmail" resname="extmng.apiQuotaNotificationEmail">
+				<source>Notification email address (recipient for API quota exceeded or incorrect API key errors)</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
