@@ -13,6 +13,7 @@ $EM_CONF['ns_aiuniverse'] = [
     'constraints' => [
         'depends' => [
             'typo3' => '11.0.0-13.4.99',
+            'ns_license' => '14.5.4-14.9.99',
             'php' => '7.4.0-8.4.99',
         ],
         'conflicts' => [],
