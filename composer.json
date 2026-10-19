@@ -29,6 +29,7 @@
     },
     "require": {
         "typo3/cms-core": "^11 || ^12 || ^13",
+        "nitsan/ns-license": "^14.5.4",
         "typo3/cms-extbase": "^11 || ^12 || ^13",
         "typo3/cms-fluid": "^11 || ^12 || ^13",
         "php": "^7.4 || ^8"
